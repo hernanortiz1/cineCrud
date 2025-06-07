@@ -41,3 +41,38 @@ const guardarLocalStorage = () => {
   localStorage.setItem("peliculaKey", JSON.stringify(pelicula));
 };
 //FIN CREATE
+
+//VARIABLES
+const btnAgregar = document.getElementById("btnAgregar");
+const formularioPelicula = document.querySelector("form"); //traigo el formulario del boton
+const inputNombre = document.querySelector("#nombre");
+const inputGenero = document.querySelector("#genero");
+const inputFormato = document.querySelector("#formato");
+const inputDuracion = document.querySelector("#duracion");
+const inputImagen = document.querySelector("#imagen");
+const inputDescripcion = document.querySelector("#descripcion");
+const tablaPeliculas = document.querySelector("tbody");
+
+let idPelilulaEditar = null; //se guarda el id cuando hace clic en editar
+let creandoPelicula = true; // cuando carga es V y cuando edita es F
+
+const pelicula = JSON.parse(localStorage.getItem("peliculaKey")) || [];
+
+//MANEJADORES
+btnAgregar.addEventListener("click", () => {
+  creandoPelicula = true;
+  limpiarFormulario();
+  abrirModal();
+});
+
+formularioPelicula.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (creandoPelicula) {
+    crearPelicula();
+  } else {
+    editarPelicula();
+  }
+});
+
+//resto de la logica
+cargarDatosTabla();
