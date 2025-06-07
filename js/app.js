@@ -3,7 +3,7 @@ import Peliculas from "./classCine.js";
 //FUNCIONES
 const abrirModal = () => {
   modalPelicula.show();
-  creandoContacto = true;
+  creandoPelicula = true;
 };
 
 //CREATE
@@ -144,7 +144,7 @@ const editarPelicula = () => {
     //cerrar el modal
     modalPelicula.hide();
     // actualizar tabla
-    const filaEditada = tablaPeliculas.children[posicionContacto];
+    const filaEditada = tablaPeliculas.children[posicionPelicula];
     if (filaEditada) {
       filaEditada.children[1].textContent = pelicula[posicionPelicula].nombre;
       filaEditada.children[2].textContent = pelicula[posicionPelicula].genero;
@@ -160,6 +160,39 @@ const editarPelicula = () => {
   }
 };
 //FIN UPDATE
+
+
+// funciones de validacion
+function validarCantidadCaracteres(input, min, max) {
+  //trim quita espacio al principio y al final de la cadena
+  if (input.value.trim().length >= min && input.value.trim().length <= max) {
+    input.classList.add("is-valid");
+    input.classList.remove("is-invalid");
+    return true;
+  } else {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    return false;
+  }
+}
+
+function validaciones() {
+  let datosValidos = true;
+
+  // si devuelve true en los 2 if, retorna true porque se llenaron bien los campos
+  if (!validarCantidadCaracteres(inputNombre, 2, 50)) {
+    datosValidos = false;
+  }
+
+  if (!validarCantidadCaracteres(inputGenero, 2, 50)) {
+    datosValidos = false;
+  }
+
+
+  return datosValidos;
+}
+
+
 
 //VARIABLES
 const modalPelicula = new bootstrap.Modal(
