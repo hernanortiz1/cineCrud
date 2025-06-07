@@ -75,34 +75,33 @@ const dibujarFila = (pelicula, indice) => {
 //FIN READ
 
 //DELETE
-window.eliminarPelicula = (id) => {    
-  console.log(id);
-
-  const posicionPeliculaBuscada = pelicula.findIndex(
-    (pelicula) => pelicula.id === id
-  );
-
+window.eliminarPelicula = (id) => {
   Swal.fire({
-    title: "¿Eliminar pelicula?",
-    text: "No podra recuperar los datos",
+    title: "Estas por eliminar un contacto",
+    text: "si decides eliminar, no puedes revertir este paso",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si, eliminar",
+    confirmButtonColor: "#78c2ad",
+    cancelButtonColor: "#ff7851",
+    confirmButtonText: "Borrar",
+    cancelButtonText: "Salir",
   }).then((result) => {
     if (result.isConfirmed) {
+      const posicionPeliculaBuscada = pelicula.findIndex(
+        (pelicula) => pelicula.id === id
+      );
       pelicula.splice(posicionPeliculaBuscada, 1);
 
       guardarLocalStorage();
       //actualizar tabla
-      console.log(tablaPeliculas.children[posicionPeliculaBuscada].remove());
-
-      Swal.fire({
-        title: "Eliminada",
-        text: "La pelicula fue eliminada",
-        icon: "success",
-      });
+      tablaPeliculas.children[posicionPeliculaBuscada].remove();
+      const filasRestantes = tablaPeliculas.children;
+      for (let i = 0; i < filasRestantes.length; i++) {
+        const celdaIndice = filasRestantes[i].querySelector("th");
+        if (celdaIndice) {
+          celdaIndice.textContent = i + 1; // Actualiza el texto con el nuevo índice
+        }
+      }
     }
   });
 };
@@ -127,35 +126,45 @@ window.prepararPelicula = (id) => {
 };
 
 const editarPelicula = () => {
-  const posicionPelicula = pelicula.findIndex(
-    (pelicula) => pelicula.id === idPelilulaEditar
-  );
-  pelicula[posicionPelicula].nombre = inputNombre.value;
-  pelicula[posicionPelicula].genero = inputGenero.value;
-  pelicula[posicionPelicula].formato = inputFormato.value;
-  pelicula[posicionPelicula].duracion = inputDuracion.value;
-  pelicula[posicionPelicula].imagen = inputImagen.value;
-  pelicula[posicionPelicula].descripcion = inputDescripcion.value;
+  if (validaciones()) {
+    const posicionPelicula = pelicula.findIndex(
+      (pelicula) => pelicula.id === idPelilulaEditar
+    );
+    pelicula[posicionPelicula].nombre = inputNombre.value;
+    pelicula[posicionPelicula].genero = inputGenero.value;
+    pelicula[posicionPelicula].formato = inputFormato.value;
+    pelicula[posicionPelicula].duracion = inputDuracion.value;
+    pelicula[posicionPelicula].imagen = inputImagen.value;
+    pelicula[posicionPelicula].descripcion = inputDescripcion.value;
 
-  // actualizar localstorage
-  guardarLocalStorage();
+    // actualizar localstorage
+    guardarLocalStorage();
+    limpiarFormulario();
 
-  Swal.fire({
-    title: "Cambios guardados con éxito",
-    icon: "success",
-    draggable: true,
-  });
+    //cerrar el modal
+    modalPelicula.hide();
+    // actualizar tabla
+    const filaEditada = tablaPeliculas.children[posicionContacto];
+    if (filaEditada) {
+      filaEditada.children[1].textContent = pelicula[posicionPelicula].nombre;
+      filaEditada.children[2].textContent = pelicula[posicionPelicula].genero;
+      filaEditada.children[3].textContent = pelicula[posicionPelicula].formato;
+      filaEditada.children[4].textContent = pelicula[posicionPelicula].duracion;
+    }
 
-  //limpiar formulario y limpiar el modal
-
-  // actualizar tabla
-
-  //agregar mensaje para usuario
+    Swal.fire({
+      title: "Pelicula modificada",
+      text: `La pelicula ${pelicula[posicionPelicula].nombre} fue modificada correctamente`,
+      icon: "success",
+    });
+  }
 };
-
 //FIN UPDATE
 
 //VARIABLES
+const modalPelicula = new bootstrap.Modal(
+  document.getElementById("modalPelicula")
+);
 const btnAgregar = document.getElementById("btnAgregar");
 const formularioPelicula = document.querySelector("form"); //traigo el formulario del boton
 const inputNombre = document.querySelector("#nombre");
