@@ -159,10 +159,12 @@ const editarPelicula = () => {
     });
   }
 };
-
 //FIN UPDATE
 
 //VARIABLES
+const modalPelicula = new bootstrap.Modal(
+  document.getElementById("modalPelicula")
+);
 const btnAgregar = document.getElementById("btnAgregar");
 const formularioPelicula = document.querySelector("form"); //traigo el formulario del boton
 const inputNombre = document.querySelector("#nombre");
