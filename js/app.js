@@ -126,30 +126,38 @@ window.prepararPelicula = (id) => {
 };
 
 const editarPelicula = () => {
-  const posicionPelicula = pelicula.findIndex(
-    (pelicula) => pelicula.id === idPelilulaEditar
-  );
-  pelicula[posicionPelicula].nombre = inputNombre.value;
-  pelicula[posicionPelicula].genero = inputGenero.value;
-  pelicula[posicionPelicula].formato = inputFormato.value;
-  pelicula[posicionPelicula].duracion = inputDuracion.value;
-  pelicula[posicionPelicula].imagen = inputImagen.value;
-  pelicula[posicionPelicula].descripcion = inputDescripcion.value;
+  if (validaciones()) {
+    const posicionPelicula = pelicula.findIndex(
+      (pelicula) => pelicula.id === idPelilulaEditar
+    );
+    pelicula[posicionPelicula].nombre = inputNombre.value;
+    pelicula[posicionPelicula].genero = inputGenero.value;
+    pelicula[posicionPelicula].formato = inputFormato.value;
+    pelicula[posicionPelicula].duracion = inputDuracion.value;
+    pelicula[posicionPelicula].imagen = inputImagen.value;
+    pelicula[posicionPelicula].descripcion = inputDescripcion.value;
 
-  // actualizar localstorage
-  guardarLocalStorage();
+    // actualizar localstorage
+    guardarLocalStorage();
+    limpiarFormulario();
 
-  Swal.fire({
-    title: "Cambios guardados con éxito",
-    icon: "success",
-    draggable: true,
-  });
+    //cerrar el modal
+    modalPelicula.hide();
+    // actualizar tabla
+    const filaEditada = tablaPeliculas.children[posicionContacto];
+    if (filaEditada) {
+      filaEditada.children[1].textContent = pelicula[posicionPelicula].nombre;
+      filaEditada.children[2].textContent = pelicula[posicionPelicula].genero;
+      filaEditada.children[3].textContent = pelicula[posicionPelicula].formato;
+      filaEditada.children[4].textContent = pelicula[posicionPelicula].duracion;
+    }
 
-  //limpiar formulario y limpiar el modal
-
-  // actualizar tabla
-
-  //agregar mensaje para usuario
+    Swal.fire({
+      title: "Pelicula modificada",
+      text: `La pelicula ${pelicula[posicionPelicula].nombre} fue modificada correctamente`,
+      icon: "success",
+    });
+  }
 };
 
 //FIN UPDATE
