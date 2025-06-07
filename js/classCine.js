@@ -4,11 +4,11 @@ export default class Peliculas {
   #genero;
   #formato;
   #duracion;
-  #imagen; //almacena link de imagen
+  #imagen; 
   #descripcion;
 
   constructor(nombre, genero, formato, duracion, imagen, descripcion) {
-    this.#id = crypto.randomUUID(); //obj de JS para generar id de usuario unicos, no hacer flata NEW
+    this.#id = crypto.randomUUID();
     this.#nombre = nombre;
     this.#genero = genero;
     this.#formato = formato;
@@ -17,7 +17,6 @@ export default class Peliculas {
     this.#descripcion = descripcion;
   }
 
-  // Getters
   get id() {
     return this.#id;
   }
@@ -46,7 +45,6 @@ export default class Peliculas {
     return this.#descripcion;
   }
 
-  // Setters con nombres descriptivos
   set nombre(nuevoNombre) {
     this.#nombre = nuevoNombre;
   }
@@ -70,7 +68,7 @@ export default class Peliculas {
   set descripcion(nuevaDescripcion) {
     this.#descripcion = nuevaDescripcion;
   }
-  //metodo para stringify, sirver para ver propiedades privadas
+  
   toJSON() {
     return {
       id: this.id,
