@@ -161,6 +161,42 @@ const editarPelicula = () => {
 };
 //FIN UPDATE
 
+
+// funciones de validacion
+function validarCantidadCaracteres(input, min, max) {
+  //trim quita espacio al principio y al final de la cadena
+  if (input.value.trim().length >= min && input.value.trim().length <= max) {
+    input.classList.add("is-valid");
+    input.classList.remove("is-invalid");
+    return true;
+  } else {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    return false;
+  }
+}
+
+function validaciones() {
+  let datosValidos = true;
+
+  // si devuelve true en los 2 if, retorna true porque se llenaron bien los campos
+  if (!validarCantidadCaracteres(inputNombre, 2, 50)) {
+    datosValidos = false;
+  }
+
+  if (!validarCantidadCaracteres(inputApellido, 2, 50)) {
+    datosValidos = false;
+  }
+
+  if (!validarEmail()) {
+    datosValidos = false;
+  }
+
+  return datosValidos;
+}
+
+
+
 //VARIABLES
 const modalPelicula = new bootstrap.Modal(
   document.getElementById("modalPelicula")
