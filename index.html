@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-bs-theme="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +17,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container">
           <a class="navbar-brand" href="./index.html">Cine CRUD</a>
           <button
@@ -63,7 +63,7 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="fondoListaPelicula">
       <section
         id="carouselIndexMd"
         class="carousel slide"
@@ -146,10 +146,10 @@
           <span class="visually-hidden">Next</span>
         </button>
       </section>
-      <section class="container my-4">
+      <section class="container my-4 ">
         <div class="d-flex justify-content-between">
           <h1>Lista de peliculas</h1>
-          <button class="btn btn-primary" id="btnAgregar">Agregar</button>
+          <button class="btn btn-primary mb-2" id="btnAgregar">Agregar</button>
         </div>
         <section class="table-responsive">
           <table class="table">
@@ -168,7 +168,7 @@
         </section>
       </section>
     </main>
-    <!-- Modal contacto-->
+    <!-- Modal-->
     <div
       class="modal fade"
       id="modalPelicula"
