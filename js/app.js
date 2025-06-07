@@ -3,7 +3,7 @@ import Peliculas from "./classCine.js";
 //FUNCIONES
 const abrirModal = () => {
   modalPelicula.show();
-  creandoContacto = true;
+  creandoPelicula = true;
 };
 
 //CREATE
@@ -144,7 +144,7 @@ const editarPelicula = () => {
     //cerrar el modal
     modalPelicula.hide();
     // actualizar tabla
-    const filaEditada = tablaPeliculas.children[posicionContacto];
+    const filaEditada = tablaPeliculas.children[posicionPelicula];
     if (filaEditada) {
       filaEditada.children[1].textContent = pelicula[posicionPelicula].nombre;
       filaEditada.children[2].textContent = pelicula[posicionPelicula].genero;
@@ -184,13 +184,10 @@ function validaciones() {
     datosValidos = false;
   }
 
-  if (!validarCantidadCaracteres(inputApellido, 2, 50)) {
+  if (!validarCantidadCaracteres(inputGenero, 2, 50)) {
     datosValidos = false;
   }
 
-  if (!validarEmail()) {
-    datosValidos = false;
-  }
 
   return datosValidos;
 }
