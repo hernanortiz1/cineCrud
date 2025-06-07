@@ -70,7 +70,40 @@ const dibujarFila = (pelicula, indice) => {
 };
 //FIN READ
 
+// BORRAR DELETE
+window.eliminarPelicula = (id) => {
+  console.log("borrar");
+  console.log(id);
 
+  const posicionPeliculaBuscada = pelicula.findIndex(
+    (pelicula) => pelicula.id === id
+  ); 
+
+  Swal.fire({
+    title: "¿Eliminar pelicula?",
+    text: "No podra recuperar los datos",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, eliminar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      pelicula.splice(posicionPeliculaBuscada, 1); 
+
+      guardarLocalStorage(); 
+      //actualizar tabla
+      console.log(tablaPeliculas.children[posicionPeliculaBuscada].remove());
+
+      Swal.fire({
+        title: "Eliminada",
+        text: "La pelicula fue eliminada",
+        icon: "success",
+      });
+    }
+  });
+};
+//FIN DELETE
 
 //VARIABLES
 const btnAgregar = document.getElementById("btnAgregar");
