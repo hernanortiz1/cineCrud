@@ -42,6 +42,36 @@ const guardarLocalStorage = () => {
 };
 //FIN CREATE
 
+//READ,
+const cargarDatosTabla = () => {
+  if (pelicula.length != 0) {
+  }
+
+  pelicula.map((pelicula, indice) => {
+    dibujarFila(pelicula, indice + 1);
+  });
+};
+
+const dibujarFila = (pelicula, indice) => {
+  tablaPeliculas.innerHTML += `
+   <tr>
+        <th scope="row">${indice}</th>
+        <td>${pelicula.nombre}</td>
+        <td>${pelicula.genero}</td>
+        <td>${pelicula.formato}</td>
+        <td>${pelicula.duracion}</td>
+        <td>
+          <button class="btn btn-warning" onclick="prepararPelicula('${pelicula.id}')">Editar</button>
+            <button class="btn btn-danger" onclick="eliminarPelicula('${pelicula.id}')">Borrar</button>
+          <button class="btn btn-info">Ver</button>
+          </td>
+      </tr>
+  `;
+};
+//FIN READ
+
+
+
 //VARIABLES
 const btnAgregar = document.getElementById("btnAgregar");
 const formularioPelicula = document.querySelector("form"); //traigo el formulario del boton
