@@ -70,7 +70,7 @@ const dibujarFila = (pelicula, indice) => {
 };
 //FIN READ
 
-// BORRAR DELETE
+//DELETE
 window.eliminarPelicula = (id) => {
   console.log("borrar");
   console.log(id);
@@ -104,6 +104,54 @@ window.eliminarPelicula = (id) => {
   });
 };
 //FIN DELETE
+
+// UPDATE
+window.prepararPelicula = (id) => {
+  const peliculaBuscada = pelicula.find((pelicula) => pelicula.id === id); //devuelve un objeto si cumple con la condicion, si hay vario devuelve el primero
+
+  //cargar datos en input de modal
+  inputNombre.value = peliculaBuscada.nombre;
+  inputGenero.value = peliculaBuscada.genero;
+  inputFormato.value = peliculaBuscada.formato;
+  inputDuracion.value = peliculaBuscada.duracion;
+  inputImagen.value = peliculaBuscada.imagen;
+  inputDescripcion.value = peliculaBuscada.descripcion;
+
+  abrirModal();
+
+  idPelilulaEditar = id;
+  creandoPelicula = false;
+};
+
+const editarPelicula = () => {
+
+  const posicionPelicula = pelicula.findIndex(
+    (pelicula) => pelicula.id === idPelilulaEditar
+  );
+  pelicula[posicionPelicula].nombre = inputNombre.value;
+  pelicula[posicionPelicula].genero = inputGenero.value;
+  pelicula[posicionPelicula].formato = inputFormato.value;
+  pelicula[posicionPelicula].duracion = inputDuracion.value;
+  pelicula[posicionPelicula].imagen = inputImagen.value;
+  pelicula[posicionPelicula].descripcion = inputDescripcion.value;
+
+  // actualizar localstorage
+  guardarLocalStorage();
+
+Swal.fire({
+  title: "Cambios guardados con éxito",
+  icon: "success",
+  draggable: true
+});
+
+  //limpiar formulario y limpiar el modal
+
+  // actualizar tabla
+
+  //agregar mensaje para usuario
+};
+
+//FIN UPDATE
 
 //VARIABLES
 const btnAgregar = document.getElementById("btnAgregar");
