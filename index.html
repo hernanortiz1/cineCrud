@@ -146,7 +146,119 @@
           <span class="visually-hidden">Next</span>
         </button>
       </section>
+      <section class="container my-4">
+        <div class="d-flex justify-content-between">
+          <h1>Lista de peliculas</h1>
+          <button class="btn btn-primary" id="btnAgregar">Agregar</button>
+        </div>
+        <section class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Genero</th>
+                <th scope="col">Formato</th>
+                <th scope="col">Duracion</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+      </section>
+
     </main>
+     <!-- Modal contacto-->
+    <div
+      class="modal fade"
+      id="modalPelicula"
+      tabindex="-1"
+      aria-labelledby="modalPeliculaLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalPeliculaLabel">
+              Agregar pelicula
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  aria-describedby="Ingresar nombre"
+                  minlength="2"
+                  maxlength="50"
+                  placeholder="Ej: Star Wars"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="genero" class="form-label">Genero</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="genero"
+                  minlength="2"
+                  maxlength="50"
+                  placeholder="Ej: Accion"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="formato" class="form-label">Formato</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="formato"
+                  placeholder="Ej: 3D"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="duracion" class="form-label">Duracion</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="duracion"
+                  placeholder="Ej: 100 min"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imagen"
+                  placeholder="Ej: http://image"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripcion</label>
+                <textarea
+                  class="form-control"
+                  id="descripcion"
+                  placeholder="Agrega tus notas aqui"
+                  maxlength="Descripcion de pelicula"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" id="btnSubmit">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer class="bg-dark py-3">
       <div class="container">
         <a href="./index.html" class="text-decoration-none">
