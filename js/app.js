@@ -34,7 +34,11 @@ const crearPelicula = () => {
 };
 
 const limpiarFormulario = () => {
-  formularioPelicula.reset(); //limpia campos del formulario luego de apretar enviar
+  formularioPelicula.reset();
+  const inputs = formularioPelicula.querySelectorAll(".form-control");
+  inputs.forEach((input) => {
+    input.classList.remove("is-valid", "is-invalid");
+  });
 };
 
 const guardarLocalStorage = () => {
@@ -70,14 +74,13 @@ const dibujarFila = (pelicula, indice) => {
 };
 //FIN READ
 
-// BORRAR DELETE
-window.eliminarPelicula = (id) => {
-  console.log("borrar");
+//DELETE
+window.eliminarPelicula = (id) => {    
   console.log(id);
 
   const posicionPeliculaBuscada = pelicula.findIndex(
     (pelicula) => pelicula.id === id
-  ); 
+  );
 
   Swal.fire({
     title: "¿Eliminar pelicula?",
@@ -89,9 +92,9 @@ window.eliminarPelicula = (id) => {
     confirmButtonText: "Si, eliminar",
   }).then((result) => {
     if (result.isConfirmed) {
-      pelicula.splice(posicionPeliculaBuscada, 1); 
+      pelicula.splice(posicionPeliculaBuscada, 1);
 
-      guardarLocalStorage(); 
+      guardarLocalStorage();
       //actualizar tabla
       console.log(tablaPeliculas.children[posicionPeliculaBuscada].remove());
 
@@ -104,6 +107,53 @@ window.eliminarPelicula = (id) => {
   });
 };
 //FIN DELETE
+
+// UPDATE
+window.prepararPelicula = (id) => {
+  const peliculaBuscada = pelicula.find((pelicula) => pelicula.id === id); //devuelve un objeto si cumple con la condicion, si hay vario devuelve el primero
+
+  //cargar datos en input de modal
+  inputNombre.value = peliculaBuscada.nombre;
+  inputGenero.value = peliculaBuscada.genero;
+  inputFormato.value = peliculaBuscada.formato;
+  inputDuracion.value = peliculaBuscada.duracion;
+  inputImagen.value = peliculaBuscada.imagen;
+  inputDescripcion.value = peliculaBuscada.descripcion;
+
+  abrirModal();
+
+  idPelilulaEditar = id;
+  creandoPelicula = false;
+};
+
+const editarPelicula = () => {
+  const posicionPelicula = pelicula.findIndex(
+    (pelicula) => pelicula.id === idPelilulaEditar
+  );
+  pelicula[posicionPelicula].nombre = inputNombre.value;
+  pelicula[posicionPelicula].genero = inputGenero.value;
+  pelicula[posicionPelicula].formato = inputFormato.value;
+  pelicula[posicionPelicula].duracion = inputDuracion.value;
+  pelicula[posicionPelicula].imagen = inputImagen.value;
+  pelicula[posicionPelicula].descripcion = inputDescripcion.value;
+
+  // actualizar localstorage
+  guardarLocalStorage();
+
+  Swal.fire({
+    title: "Cambios guardados con éxito",
+    icon: "success",
+    draggable: true,
+  });
+
+  //limpiar formulario y limpiar el modal
+
+  // actualizar tabla
+
+  //agregar mensaje para usuario
+};
+
+//FIN UPDATE
 
 //VARIABLES
 const btnAgregar = document.getElementById("btnAgregar");
