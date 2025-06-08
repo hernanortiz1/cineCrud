@@ -14,7 +14,7 @@ card.innerHTML= `
            
                 <img
                   src="${peliculaBuscada.imagen}"
-                  class="img-fluid rounded-start"
+                  class="img-fluid rounded-start imagenDetallePelicula"
                   alt="${peliculaBuscada.nombre}"
                 />
                 <div class="card-body">

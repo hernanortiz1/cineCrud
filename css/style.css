@@ -10,3 +10,9 @@ main {
 .fondoListaPelicula{
   background-color: #eff1f4;
 }
+
+.imagenDetallePelicula{
+  max-height: 500px;
+  object-fit: cover;
+  width: 100%;
+}
