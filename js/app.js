@@ -187,8 +187,18 @@ function validarDuracion(input) {
   }
 }
 
-
-
+function validarImagen() {
+  const regExp = /^https?:\/\/.*\.(jpg|jpeg|png)$/i;
+  if (regExp.test(inputImagen.value.trim())) {
+    inputImagen.classList.add("is-valid");
+    inputImagen.classList.remove("is-invalid");
+    return true;
+  } else {
+    inputImagen.classList.add("is-invalid");
+    inputImagen.classList.remove("is-valid");
+    return false;
+  }
+}
 
 function validaciones() {
   let datosValidos = true;
@@ -205,6 +215,10 @@ function validaciones() {
   }
 
   if (!validarDuracion(inputDuracion)) {
+    datosValidos = false;
+  }
+
+  if (!validarImagen()) {
     datosValidos = false;
   }
 
