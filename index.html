@@ -244,7 +244,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="duracion" class="form-label">Duracion *</label>
+                <label for="duracion" class="form-label">Duración *</label>
                 <input
                   type="tel"
                   class="form-control"
@@ -284,8 +284,11 @@
                 ></textarea>
                 <div class="valid-feedback">Descripción Correcta</div>
                 <div class="invalid-feedback">
-                  La Descripción no debe superar los 250 caracteres
+                  La Descripción debe contener entre 10 y 250 caracteres
                 </div>
+              </div>
+              <div id="mensajeAyuda" class="form-text my-3">
+                Los campos (*) son obligatorios.
               </div>
               <button type="submit" class="btn btn-primary" id="btnSubmit">
                 Enviar
