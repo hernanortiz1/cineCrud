@@ -67,7 +67,7 @@ const dibujarFila = (pelicula, indice) => {
         <td>
           <button class="btn btn-warning" onclick="prepararPelicula('${pelicula.id}')">Editar</button>
             <button class="btn btn-danger" onclick="eliminarPelicula('${pelicula.id}')">Borrar</button>
-          <button class="btn btn-info">Ver</button>
+          <button class="btn btn-info"  onclick="verPelicula('${pelicula.id}')">Ver</button>
           </td>
       </tr>
   `;
@@ -160,6 +160,13 @@ const editarPelicula = () => {
   }
 };
 //FIN UPDATE
+
+//VER PELICULA
+window.verPelicula = (id) => {
+  console.log(window.location);
+  window.location.href = "./pages/detalleContacto.html?cod=" + id;
+};
+//FIN VER CONTACTO
 
 // funciones de validacion
 function validarCantidadCaracteres(input, min, max) {
