@@ -4,6 +4,7 @@ import Peliculas from "./classCine.js";
 const abrirModal = () => {
   modalPelicula.show();
   creandoPelicula = true;
+  modificarTituloyBtnModal(funcionEditar);
 };
 
 //CREATE
@@ -17,6 +18,9 @@ const crearPelicula = () => {
       inputImagen.value,
       inputDescripcion.value
     );
+
+    //para cambiar nombre a btn
+    funcionEditar = false;
 
     pelicula.push(peliculaNueva);
     console.log(pelicula);
@@ -111,7 +115,6 @@ window.eliminarPelicula = (id) => {
 window.prepararPelicula = (id) => {
   const peliculaBuscada = pelicula.find((pelicula) => pelicula.id === id); //devuelve un objeto si cumple con la condicion, si hay vario devuelve el primero
 
-  //cargar datos en input de modal
   inputNombre.value = peliculaBuscada.nombre;
   inputGenero.value = peliculaBuscada.genero;
   inputFormato.value = peliculaBuscada.formato;
@@ -119,6 +122,9 @@ window.prepararPelicula = (id) => {
   inputImagen.value = peliculaBuscada.imagen;
   inputDescripcion.value = peliculaBuscada.descripcion;
 
+  //para cambiar nombre a btn
+  funcionEditar = true;
+  modificarTituloyBtnModal(funcionEditar);
   abrirModal();
 
   idPelilulaEditar = id;
@@ -137,11 +143,9 @@ const editarPelicula = () => {
     pelicula[posicionPelicula].imagen = inputImagen.value;
     pelicula[posicionPelicula].descripcion = inputDescripcion.value;
 
-    // actualizar localstorage
     guardarLocalStorage();
     limpiarFormulario();
 
-    //cerrar el modal
     modalPelicula.hide();
     // actualizar tabla
     const filaEditada = tablaPeliculas.children[posicionPelicula];
@@ -239,6 +243,20 @@ function validaciones() {
   return datosValidos;
 }
 
+const modificarTituloyBtnModal = (funcionEditar) => {
+  //cambiar nombre boton modal
+  const btnEditar = document.querySelector("#btnSubmit");
+  const tituloModal = document.querySelector("#modalPeliculaLabel");
+
+  if (funcionEditar === true) {
+    btnEditar.textContent = "Guardar cambios";
+    tituloModal.textContent = "Editar Película";
+  } else {
+    btnEditar.textContent = "Agregar película";
+    tituloModal.textContent = "Nueva Película";
+  }
+};
+
 //VARIABLES
 const modalPelicula = new bootstrap.Modal(
   document.getElementById("modalPelicula")
@@ -255,13 +273,16 @@ const tablaPeliculas = document.querySelector("tbody");
 
 let idPelilulaEditar = null; //se guarda el id cuando hace clic en editar
 let creandoPelicula = true; // cuando carga es V y cuando edita es F
+let funcionEditar = null;
 
 const pelicula = JSON.parse(localStorage.getItem("peliculaKey")) || [];
 
 //MANEJADORES
 btnAgregar.addEventListener("click", () => {
   creandoPelicula = true;
+  funcionEditar = false;
   limpiarFormulario();
+  modificarTituloyBtnModal(funcionEditar);
   abrirModal();
 });
 
