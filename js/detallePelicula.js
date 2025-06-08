@@ -1,22 +1,26 @@
-console.log(window.location)
+console.log(window.location);
 
-const parametroURL = new URLSearchParams(window.location.search)
+const parametroURL = new URLSearchParams(window.location.search);
 const id = parametroURL.get("cod");
 
-const pelicula = JSON.parse(localStorage.getItem("peliculaKey"))
+const pelicula = JSON.parse(localStorage.getItem("peliculaKey"));
 
-const peliculaBuscada = pelicula.find((pelicula)=> pelicula.id === id)
+const peliculaBuscada = pelicula.find((pelicula) => pelicula.id === id);
 
-const card = document.querySelector(".card")
+const card = document.querySelector(".card");
 
-card.innerHTML= `
+card.innerHTML = `
   <div class="row g-0">
            
-                <img
-                  src="${peliculaBuscada.imagen}"
-                  class="img-fluid rounded-start imagenDetallePelicula"
-                  alt="${peliculaBuscada.nombre}"
-                />
+                ${
+                  peliculaBuscada.imagen
+                    ? `<img
+              src="${peliculaBuscada.imagen}"
+              class="img-fluid rounded-start imagenDetallePelicula"
+              alt="${peliculaBuscada.nombre}"
+            />`
+                    : `<i class="bi bi-film text-center iconoDetallePelicula""></i>`
+                }
                 <div class="card-body">
                   <h2 class="card-title">
                     Nombre: ${peliculaBuscada.nombre}
@@ -28,4 +32,4 @@ card.innerHTML= `
                     <li><b>Descripción:</b> ${peliculaBuscada.descripcion}</li>
                   </ul>
                 </div>
-    </div>`
+    </div>`;

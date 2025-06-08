@@ -225,14 +225,17 @@ function validaciones() {
     datosValidos = false;
   }
 
-  if (!validarImagen()) {
-    datosValidos = false;
+  if (inputImagen.value.trim() !== "") {
+    if (!validarImagen()) {
+      datosValidos = false;
+    }
   }
 
-  if (!validarCantidadCaracteres(inputNombre, 10, 250)) {
-    datosValidos = false;
+  if (inputDescripcion.value.trim() !== "") {
+    if (!validarCantidadCaracteres(inputDescripcion, 10, 250)) {
+      datosValidos = false;
+    }
   }
-
   return datosValidos;
 }
 
