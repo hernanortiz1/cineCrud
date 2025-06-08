@@ -67,7 +67,7 @@ const dibujarFila = (pelicula, indice) => {
         <td>
           <button class="btn btn-warning" onclick="prepararPelicula('${pelicula.id}')">Editar</button>
             <button class="btn btn-danger" onclick="eliminarPelicula('${pelicula.id}')">Borrar</button>
-          <button class="btn btn-info">Ver</button>
+          <button class="btn btn-info"  onclick="verPelicula('${pelicula.id}')">Ver</button>
           </td>
       </tr>
   `;
@@ -161,6 +161,13 @@ const editarPelicula = () => {
 };
 //FIN UPDATE
 
+//VER PELICULA
+window.verPelicula = (id) => {
+  console.log(window.location);
+  window.location.href = "./pages/detallePelicula.html?cod=" + id;
+};
+//FIN VER CONTACTO
+
 // funciones de validacion
 function validarCantidadCaracteres(input, min, max) {
   if (input.value.trim().length >= min && input.value.trim().length <= max) {
@@ -218,14 +225,17 @@ function validaciones() {
     datosValidos = false;
   }
 
-  if (!validarImagen()) {
-    datosValidos = false;
+  if (inputImagen.value.trim() !== "") {
+    if (!validarImagen()) {
+      datosValidos = false;
+    }
   }
 
-  if (!validarCantidadCaracteres(inputNombre, 10, 250)) {
-    datosValidos = false;
+  if (inputDescripcion.value.trim() !== "") {
+    if (!validarCantidadCaracteres(inputDescripcion, 10, 250)) {
+      datosValidos = false;
+    }
   }
-
   return datosValidos;
 }
 
