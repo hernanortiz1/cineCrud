@@ -187,6 +187,9 @@ function validarDuracion(input) {
   }
 }
 
+
+
+
 function validaciones() {
   let datosValidos = true;
   if (!validarCantidadCaracteres(inputNombre, 2, 50)) {
@@ -197,7 +200,7 @@ function validaciones() {
     datosValidos = false;
   }
 
-  if (!validarCantidadCaracteres(inputFormato, 2, 50)) {
+  if (!validarCantidadCaracteres(inputFormato, 2, 30)) {
     datosValidos = false;
   }
 
