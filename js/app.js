@@ -164,7 +164,6 @@ const editarPelicula = () => {
 
 // funciones de validacion
 function validarCantidadCaracteres(input, min, max) {
-  //trim quita espacio al principio y al final de la cadena
   if (input.value.trim().length >= min && input.value.trim().length <= max) {
     input.classList.add("is-valid");
     input.classList.remove("is-invalid");
@@ -178,8 +177,6 @@ function validarCantidadCaracteres(input, min, max) {
 
 function validaciones() {
   let datosValidos = true;
-
-  // si devuelve true en los 2 if, retorna true porque se llenaron bien los campos
   if (!validarCantidadCaracteres(inputNombre, 2, 50)) {
     datosValidos = false;
   }
