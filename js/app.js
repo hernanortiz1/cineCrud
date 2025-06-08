@@ -81,8 +81,8 @@ window.eliminarPelicula = (id) => {
     text: "si decides eliminar, no puedes revertir este paso",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#78c2ad",
-    cancelButtonColor: "#ff7851",
+    confirmButtonColor: "#57cc99",
+    cancelButtonColor: "#d00000",
     confirmButtonText: "Borrar",
     cancelButtonText: "Salir",
   }).then((result) => {
@@ -161,10 +161,22 @@ const editarPelicula = () => {
 };
 //FIN UPDATE
 
-
 // funciones de validacion
 function validarCantidadCaracteres(input, min, max) {
   if (input.value.trim().length >= min && input.value.trim().length <= max) {
+    input.classList.add("is-valid");
+    input.classList.remove("is-invalid");
+    return true;
+  } else {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    return false;
+  }
+}
+
+function validarDuracion(input) {
+  const duracion = parseInt(input.value.trim());
+  if (!isNaN(duracion) && duracion >= 10 && duracion <= 500) {
     input.classList.add("is-valid");
     input.classList.remove("is-invalid");
     return true;
@@ -185,11 +197,16 @@ function validaciones() {
     datosValidos = false;
   }
 
+  if (!validarCantidadCaracteres(inputFormato, 2, 50)) {
+    datosValidos = false;
+  }
+
+  if (!validarDuracion(inputDuracion)) {
+    datosValidos = false;
+  }
 
   return datosValidos;
 }
-
-
 
 //VARIABLES
 const modalPelicula = new bootstrap.Modal(
