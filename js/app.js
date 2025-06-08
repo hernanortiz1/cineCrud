@@ -164,7 +164,7 @@ const editarPelicula = () => {
 //VER PELICULA
 window.verPelicula = (id) => {
   console.log(window.location);
-  window.location.href = "./pages/detalleContacto.html?cod=" + id;
+  window.location.href = "./pages/detallePelicula.html?cod=" + id;
 };
 //FIN VER CONTACTO
 
