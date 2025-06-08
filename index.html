@@ -232,6 +232,8 @@
                   type="text"
                   class="form-control"
                   id="formato"
+                  minlength="2"
+                  maxlength="50"
                   placeholder="Ej: 3D"
                   required
                 />
@@ -277,8 +279,13 @@
                   class="form-control"
                   id="descripcion"
                   placeholder="Descripción de la pelicula"
+                  minlength="2"
                   maxlength="250"
                 ></textarea>
+                 <div class="valid-feedback">Descripción Correcta</div>
+                <div class="invalid-feedback">
+                 La Descripción no debe superar los 250 caracteres
+                </div>
               </div>
               <button type="submit" class="btn btn-primary" id="btnSubmit">
                 Enviar

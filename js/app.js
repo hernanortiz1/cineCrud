@@ -222,6 +222,10 @@ function validaciones() {
     datosValidos = false;
   }
 
+  if (!validarCantidadCaracteres(inputNombre, 10, 250)) {
+    datosValidos = false;
+  }
+
   return datosValidos;
 }
 
