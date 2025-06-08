@@ -146,7 +146,7 @@
           <span class="visually-hidden">Next</span>
         </button>
       </section>
-      <section class="container my-4 ">
+      <section class="container my-4">
         <div class="d-flex justify-content-between">
           <h1>Lista de peliculas</h1>
           <button class="btn btn-primary mb-2" id="btnAgregar">Agregar</button>
@@ -159,7 +159,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Genero</th>
                 <th scope="col">Formato</th>
-                <th scope="col">Duracion</th>
+                <th scope="col">Duración</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
@@ -192,7 +192,7 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="nombre" class="form-label">Nombre *</label>
                 <input
                   type="text"
                   class="form-control"
@@ -201,10 +201,16 @@
                   minlength="2"
                   maxlength="50"
                   placeholder="Ej: Star Wars"
+                  required
                 />
+                <div class="valid-feedback">Nombre correcto</div>
+                <div class="invalid-feedback">
+                  El nombre es obligatorio, debe contenener entre 2 y 50
+                  caracteres
+                </div>
               </div>
               <div class="mb-3">
-                <label for="genero" class="form-label">Genero</label>
+                <label for="genero" class="form-label">Genero *</label>
                 <input
                   type="text"
                   class="form-control"
@@ -212,43 +218,74 @@
                   minlength="2"
                   maxlength="50"
                   placeholder="Ej: Accion"
+                  required
                 />
+                <div class="valid-feedback">Gerero correcto</div>
+                <div class="invalid-feedback">
+                  El genero es obligatorio, debe contenener entre 2 y 50
+                  caracteres
+                </div>
               </div>
               <div class="mb-3">
-                <label for="formato" class="form-label">Formato</label>
+                <label for="formato" class="form-label">Formato *</label>
                 <input
                   type="text"
                   class="form-control"
                   id="formato"
+                  minlength="2"
+                  maxlength="50"
                   placeholder="Ej: 3D"
+                  required
                 />
+                <div class="valid-feedback">Formato correcto</div>
+                <div class="invalid-feedback">
+                  El formato es obligatorio, debe contenener entre 2 y 30
+                  caracteres
+                </div>
               </div>
               <div class="mb-3">
-                <label for="duracion" class="form-label">Duracion</label>
+                <label for="duracion" class="form-label">Duracion *</label>
                 <input
                   type="tel"
                   class="form-control"
                   id="duracion"
                   placeholder="Ej: 100 min"
+                  required
                 />
+                <div class="valid-feedback">Duración correcta</div>
+                <div class="invalid-feedback">
+                  La Duración es obligatoria, debe contenener entre 2 y 3
+                  digitos
+                </div>
               </div>
               <div class="mb-3">
-                <label for="imagen" class="form-label">Imagen</label>
+                <label for="imagen" class="form-label"
+                  >Imagen (jpg, jpeg, png)</label
+                >
                 <input
                   type="text"
                   class="form-control"
                   id="imagen"
-                  placeholder="Ej: http://image"
+                  placeholder="Ej: http://image.jpg"
                 />
+                <div class="valid-feedback">Imagen correcta</div>
+                <div class="invalid-feedback">
+                  Formato invalido, la imagen debe ser jpg, jpeg, png
+                </div>
               </div>
               <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripcion</label>
+                <label for="descripcion" class="form-label">Descripción</label>
                 <textarea
                   class="form-control"
                   id="descripcion"
-                  placeholder="Agrega tus notas aqui"
-                  maxlength="Descripcion de pelicula"
+                  placeholder="Descripción de la pelicula"
+                  minlength="2"
+                  maxlength="250"
                 ></textarea>
+                <div class="valid-feedback">Descripción Correcta</div>
+                <div class="invalid-feedback">
+                  La Descripción no debe superar los 250 caracteres
+                </div>
               </div>
               <button type="submit" class="btn btn-primary" id="btnSubmit">
                 Enviar

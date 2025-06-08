@@ -81,8 +81,8 @@ window.eliminarPelicula = (id) => {
     text: "si decides eliminar, no puedes revertir este paso",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#78c2ad",
-    cancelButtonColor: "#ff7851",
+    confirmButtonColor: "#57cc99",
+    cancelButtonColor: "#d00000",
     confirmButtonText: "Borrar",
     cancelButtonText: "Salir",
   }).then((result) => {
@@ -161,10 +161,8 @@ const editarPelicula = () => {
 };
 //FIN UPDATE
 
-
 // funciones de validacion
 function validarCantidadCaracteres(input, min, max) {
-  //trim quita espacio al principio y al final de la cadena
   if (input.value.trim().length >= min && input.value.trim().length <= max) {
     input.classList.add("is-valid");
     input.classList.remove("is-invalid");
@@ -176,10 +174,34 @@ function validarCantidadCaracteres(input, min, max) {
   }
 }
 
+function validarDuracion(input) {
+  const duracion = parseInt(input.value.trim());
+  if (!isNaN(duracion) && duracion >= 10 && duracion <= 500) {
+    input.classList.add("is-valid");
+    input.classList.remove("is-invalid");
+    return true;
+  } else {
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    return false;
+  }
+}
+
+function validarImagen() {
+  const regExp = /^https?:\/\/.*\.(jpg|jpeg|png)$/i;
+  if (regExp.test(inputImagen.value.trim())) {
+    inputImagen.classList.add("is-valid");
+    inputImagen.classList.remove("is-invalid");
+    return true;
+  } else {
+    inputImagen.classList.add("is-invalid");
+    inputImagen.classList.remove("is-valid");
+    return false;
+  }
+}
+
 function validaciones() {
   let datosValidos = true;
-
-  // si devuelve true en los 2 if, retorna true porque se llenaron bien los campos
   if (!validarCantidadCaracteres(inputNombre, 2, 50)) {
     datosValidos = false;
   }
@@ -188,11 +210,24 @@ function validaciones() {
     datosValidos = false;
   }
 
+  if (!validarCantidadCaracteres(inputFormato, 2, 30)) {
+    datosValidos = false;
+  }
+
+  if (!validarDuracion(inputDuracion)) {
+    datosValidos = false;
+  }
+
+  if (!validarImagen()) {
+    datosValidos = false;
+  }
+
+  if (!validarCantidadCaracteres(inputNombre, 10, 250)) {
+    datosValidos = false;
+  }
 
   return datosValidos;
 }
-
-
 
 //VARIABLES
 const modalPelicula = new bootstrap.Modal(
