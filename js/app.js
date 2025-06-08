@@ -65,9 +65,9 @@ const dibujarFila = (pelicula, indice) => {
         <td>${pelicula.formato}</td>
         <td>${pelicula.duracion}</td>
         <td>
-          <button class="btn btn-warning" onclick="prepararPelicula('${pelicula.id}')">Editar</button>
-            <button class="btn btn-danger" onclick="eliminarPelicula('${pelicula.id}')">Borrar</button>
-          <button class="btn btn-info"  onclick="verPelicula('${pelicula.id}')">Ver</button>
+          <button class="btn btn-warning mb-1" onclick="prepararPelicula('${pelicula.id}')">Editar</button>
+            <button class="btn btn-danger mb-1" onclick="eliminarPelicula('${pelicula.id}')">Borrar</button>
+          <button class="btn btn-info mb-1"  onclick="verPelicula('${pelicula.id}')">Ver</button>
           </td>
       </tr>
   `;
